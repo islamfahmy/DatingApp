@@ -1,0 +1,44 @@
+<form [formGroup]='registerForm' (ngSubmit)="registerForm.valid&&register()" autocomplete="off">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+
+    <div class="form-group">
+        <label class="control-label" style="margin-right:10px">I am a :</label>
+        <label class="radio-inline">
+            <input type="radio" value='male' formControlName='gender'> Male
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value='fengmale' formControlName='gender' class="ml-3"> Female
+        </label>
+    </div>
+    <app-text-input [formControl]='$any(registerForm.controls["username"])' [label]='"Username"'></app-text-input>
+
+    <app-text-input [formControl]='$any(registerForm.controls["knownas"])' [label]='"Knonw as"'></app-text-input>
+
+    <app-date-input [formControl]='$any(registerForm.controls["dateOfBirth"])' [label]='"Date of Birth"'>
+    </app-date-input>
+
+    <app-text-input [formControl]='$any(registerForm.controls["city"])' [label]='"City"'>
+    </app-text-input>
+
+
+    <app-text-input [formControl]='$any(registerForm.controls["country"])' [label]='"Country"'>
+    </app-text-input>
+
+    <app-text-input [formControl]='$any(registerForm.controls["password"])' [label]='"Passwod"'></app-text-input>
+
+    <app-text-input [formControl]='$any(registerForm.controls["confirmpassword"])' [label]='"ConfirmPassword"'>
+
+    </app-text-input>
+    <div class="row " *ngIf="validationError!=undefined">
+        <ul class="text-danger">
+            <li *ngFor="let err of validationError">
+                {{err}}
+            </li>
+        </ul>
+    </div>
+    <div class=" form-group text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success mr-2" type="submit">Register </button>
+        <button class="btn btn-default mr-2" (click)="cancel()">Cancel </button>
+    </div>
+</form>
